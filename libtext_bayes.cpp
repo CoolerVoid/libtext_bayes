@@ -128,9 +128,12 @@ void NaiveBayes::free_bayers()
 	
 	while (counter < attributes.size())
 	{
-		if(class_attr_pair_counts[classes[counter]]!=NULL) 
+		if(class_attr_pair_counts[classes[counter]]!=NULL)
+		{ 
 			delete class_attr_pair_counts[classes[counter]];
-		++counter;
+			class_attr_pair_counts[classes[counter]]=NULL;
+		}
+		counter++;
 	}
 	
 
@@ -139,8 +142,11 @@ void NaiveBayes::free_bayers()
 	while (counter < attributes.size()) 
 	{
 		if(class_attr_event[classes[counter]] != NULL)
-			delete class_attr_event[classes[counter]];
-		++counter;
+		{
+			delete class_attr_event[classes[counter]];	
+			class_attr_event[classes[counter]]=NULL;
+		}
+		counter++;
 	}
 }
 
