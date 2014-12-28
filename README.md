@@ -9,8 +9,11 @@ This is a example how to use Naive Bayes to classify SPAM messages, you can to u
 TODO:
 ---
 *Optimizing with inline ASM like SSE, i think SiMD...
+
 *Improve error handlers...
+
 *fix bugs
+
 ...
 
 
