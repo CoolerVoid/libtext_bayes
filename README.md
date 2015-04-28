@@ -6,7 +6,7 @@ Just Another Naive Bayes text classifier library
 
 This is a example how to use Naive Bayes to classify SPAM messages, you can to use other purposes...
 
-![Alt text](http://dilbert.com/dyn/str_strip/000000000/00000000/0000000/000000/30000/1000/300/31336/31336.strip.gif)
+![Alt text](http://portolaplanet.com/wp-content/uploads/2013/10/dilbert-spam.gif)
 
 TODO:
 ---
