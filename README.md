@@ -8,6 +8,10 @@ This is a example how to use Naive Bayes to classify SPAM messages, you can to u
 
 ![Alt text](http://portolaplanet.com/wp-content/uploads/2013/10/dilbert-spam.gif)
 
+Reference:
+http://www.drdobbs.com/architecture-and-design/naive-bayesian-text-classification/184406064?pgno=1
+https://coolerlab.wordpress.com/2015/03/29/trilhando-machine-learning/
+
 TODO:
 ---
 *Optimizing with inline ASM like SSE, i think SiMD...
