@@ -23,7 +23,7 @@ TODO:
 ...
 
 
-How too use ?
+How you can use ?
 ---
 
 I test this lib at Linux, but run in MacOS,OpenBSD etc...
