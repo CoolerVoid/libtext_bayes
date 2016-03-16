@@ -14,7 +14,7 @@ https://coolerlab.wordpress.com/2015/03/29/trilhando-machine-learning/
 
 TODO:
 ---
-*Optimizing with inline ASM like SSE, i think SiMD...
+*Optimizing with inline ASM i think SiMD...
 
 *Improve error handlers...
 
@@ -86,4 +86,4 @@ int main(int argc, char* argv[])
 
   return 0;
 }
-```c
+```
