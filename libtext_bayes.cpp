@@ -22,8 +22,7 @@
 #include <fstream>
 #include <iostream>
 #include <set> 
-#include <sstream>
-#include <fstream>      
+#include <sstream>   
 #include <cstdlib>
 
 double NaiveBayes::get_prob_for_class(const StringVector& input_attr, const std::string& class_label)
