@@ -78,13 +78,13 @@ int main(int argc, char* argv[])
 
   robot.train();
 
-  std::string class_ = robot.classify(std::string("agora aproveite e compre"));
+  std::string class_ = robot.classify(std::string("sold of  the week"));
   std::cout << "High CLASS is " << class_ << std::endl;
 
-  class_ = robot.classify(std::string("ola meu amigo como vai as coisas ?"));
+  class_ = robot.classify(std::string("how areyou my friend"));
   std::cout << "High CLASS is " << class_ << std::endl;
 
-  class_ = robot.classify(std::string("videos porno apenas por 200 super barato"));
+  class_ = robot.classify(std::string("buy porn videos"));
   std::cout << "High CLASS is " << class_ << std::endl;
  
   robot.free_bayers(); 
