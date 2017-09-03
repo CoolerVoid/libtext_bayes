@@ -99,11 +99,17 @@ void NaiveBayes::get_training_data()
 		StringVector sv;
 
 		while (std::getline(iss, attr, DELIM)) 
-			sv.push_back(attr);
+			if(sv.size()<=1000)
+				sv.push_back(attr);
 
-		classes.push_back(sv.back()); 
-		sv.pop_back(); 
-		attributes.push_back(sv);
+// number max of classes is 128
+		if(classes.size() <= 128)
+			classes.push_back(sv.back()); 
+
+		sv.pop_back();
+
+		if(attributes.size()<=1000) 
+			attributes.push_back(sv);
   	}
 }
 
@@ -165,8 +171,9 @@ std::string NaiveBayes::classify(const std::string& input_attr)
 	StringVector attr;
 	int i = 0;
 
-	while (std::getline(iss, token, DELIM)) 
-		attr.push_back(token);
+	while (std::getline(iss, token, DELIM))
+		if(attr.size()<=1000) 
+			attr.push_back(token);
   
 
 	std::set<std::string> class_labels;
