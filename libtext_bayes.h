@@ -21,6 +21,18 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <string.h>
+
+#define DEBUG_BAYES(x, s...) do { \
+ time_t t = time(NULL); \
+ char *d = ctime(&t); \
+ fprintf(stderr, "\n--- DEBUG-START ---\n\n %.*s %s[%d] %s(): \n", \
+ (int)strlen(d) - 1, d, __FILE__, \
+ __LINE__, __FUNCTION__); \
+ fprintf(stderr, x, ## s); \
+ fprintf(stderr,"\n\n--- DEBUG-END ---\n"); \
+} while (0);
+
 /*
 In machine learning, naive Bayes classifiers are a family of simple probabilistic classifiers 
 based on applying Bayes' theorem with strong (naive) independence assumptions between the features.

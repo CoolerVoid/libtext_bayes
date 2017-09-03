@@ -24,6 +24,10 @@
 #include <set> 
 #include <sstream>   
 #include <cstdlib>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <fenv.h>
+#include <errno.h>
 
 double NaiveBayes::get_prob_for_class(const StringVector& input_attr, const std::string& class_label)
 {
@@ -78,19 +82,59 @@ TODO* improve SSE other way... i think make inline ASM
 		double temp = (double) unique_class_attr_counts[class_label];
 		double prob_xi_given_ci = (double) (count_xi_ci + 1) / (double) (temp + total_unique_attr_count);
 		log_prob_x_given_ci +=  log(prob_xi_given_ci);
+		int fpeRaised=0;
+
+		fpeRaised=fetestexcept(FE_INVALID | FE_DIVBYZERO |FE_OVERFLOW | FE_UNDERFLOW | FE_INEXACT);
+
+  		if(fpeRaised!=32 && fpeRaised!=0)
+		{
+			DEBUG_BAYES("error in log()...");
+   			perror("Log: \n");
+			fpeRaised=feclearexcept(FE_ALL_EXCEPT);
+			exit(0);
+		}
+		
+		fpeRaised=feclearexcept(FE_ALL_EXCEPT);
+
 		i++;
 	}
 
-	return (log(class_probs[class_label]) + log_prob_x_given_ci);
+	
+
+	double result= (log(class_probs[class_label]) + log_prob_x_given_ci);
+
+	int fpeRaised2=0;
+	fpeRaised2=fetestexcept(FE_INVALID | FE_DIVBYZERO |FE_OVERFLOW | FE_UNDERFLOW | FE_INEXACT);
+
+
+  		if(fpeRaised2!=32 && fpeRaised2!=0)
+		{
+			DEBUG_BAYES("error in log()...");
+   			perror("Log: \n");
+			fpeRaised2=feclearexcept(FE_ALL_EXCEPT);
+			exit(0);
+		}
+		
+
+	fpeRaised2=feclearexcept(FE_ALL_EXCEPT);
+
+	return result;
 }
 
 
 
 void NaiveBayes::get_training_data()
 {
-// TODO * add handle error at file...
+
+	if(!( access( training_data_filepath.c_str(), F_OK | R_OK ) != -1 ))
+	{
+		DEBUG_BAYES("Cannot open path to training");
+		exit(0);
+	}
+
 	std::ifstream file(training_data_filepath.c_str());
 	std::string line;
+	
 // get each line and split class (string blahblahblah blah SPAM, last word is the class 'SPAM')
 	while (std::getline(file, line)) 
 	{
